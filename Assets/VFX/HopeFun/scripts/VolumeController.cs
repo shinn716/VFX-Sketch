@@ -73,4 +73,12 @@ public class VolumeController : MonoBehaviour
             intensity.value = value2;
         });
     }
+
+    public void GlitchOff()
+    {
+        ClampedFloatParameter intensity1 = mGlitch.block;
+        intensity1.value = 0;
+        ClampedFloatParameter intensity2 = mGlitch.drift;
+        intensity2.value = 0;
+    }
 }

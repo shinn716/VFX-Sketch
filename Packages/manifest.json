@@ -9,12 +9,12 @@
     }
   ],
   "dependencies": {
-    "com.unity.ide.visualstudio": "2.0.14",
+    "com.unity.ide.visualstudio": "2.0.16",
     "com.unity.recorder": "2.5.7",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.4.8",
-    "jp.keijiro.klak.spout": "2.0.3",
     "jp.keijiro.danish-statues": "0.0.4",
+    "jp.keijiro.klak.spout": "2.0.3",
     "jp.keijiro.test-assets": "1.0.1",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

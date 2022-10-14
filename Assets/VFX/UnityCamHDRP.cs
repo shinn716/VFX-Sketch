@@ -19,11 +19,12 @@ public class UnityCamHDRP : CustomPass
     [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
     extern static private bool SendTexture(System.IntPtr w, System.IntPtr textureID);
 
+
     [SerializeField] private Camera virtualCam;
+    [SerializeField] private Vector2Int resolutuin;
     [SerializeField] private Texture resultTexture;
     [SerializeField] private bool Flip = false;
 
-    public Texture ResultTexture { get { return resultTexture; } }
 
     private IntPtr _instance;
     private TextureWrapper _wrapper;
@@ -35,12 +36,15 @@ public class UnityCamHDRP : CustomPass
         if (virtualCam == null)
             return;
 
+        //if (outputRenderTexture = null)
+        //    return;
+
         //Init UnityWebCamera plugin
         _instance = CreateTextureWrapper();
         _BlitterProcessor = new OffscreenProcessor("UnityCam/Image/Blitter");
         _wrapper = new TextureWrapper();
 
-        buffer = new RenderTexture(1280, 720, 0);
+        buffer = new RenderTexture(resolutuin.x, resolutuin.y, 0);
         buffer.hideFlags = HideFlags.DontSave;
         virtualCam.targetTexture = buffer;
     }
@@ -54,7 +58,10 @@ public class UnityCamHDRP : CustomPass
             return;
 
         if (ctx.hdCamera.camera.cameraType == CameraType.Game)
-            RenderImage(virtualCam.targetTexture);
+        {
+            //Debug.Log(ctx.hdCamera.camera.name);
+            RenderImage(buffer);
+        }
     }
 
 
