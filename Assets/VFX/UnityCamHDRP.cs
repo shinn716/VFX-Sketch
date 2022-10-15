@@ -21,7 +21,7 @@ public class UnityCamHDRP : CustomPass
 
 
     [SerializeField] private Camera virtualCam;
-    [SerializeField] private Vector2Int resolutuin;
+    [SerializeField] private Vector2Int resolutuin = new Vector2Int(1280, 720);
     [SerializeField] private Texture resultTexture;
     [SerializeField] private bool Flip = false;
 
