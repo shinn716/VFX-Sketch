@@ -7,32 +7,37 @@ using TMPro;
 public class Countdown : MonoBehaviour
 {
     [SerializeField] TextMeshPro txtTimer;
+    [SerializeField] int minutes = 10;
 
-    private DateTime dateTarget;
+
+    //private DateTime dateTarget;
+
+    private int allcount;
+
+    public void SetMinutes(string _input)
+    {
+        int.TryParse(_input, out int value);
+        minutes = value;
+        allcount = minutes * 60;
+    }
 
     private void Start()
     {
-        dateTarget = new DateTime(2022, 10, 12, 20, 30, 00);
+        //dateTarget = new DateTime(2022, 10, 12, 20, 30, 00);
+        allcount = minutes * 60;
         InvokeRepeating("CountDown", 0, 1);
     }
 
     private void CountDown()
     {
-        var result = dateTarget - DateTime.Now;
-        int hours, minutes, seconds;
-        hours = result.Hours;
-        minutes = result.Minutes;
-        seconds = result.Seconds;
+        allcount--;
 
-        if (hours < 0)
-            hours = 0;
+        if (allcount < 0)
+            allcount = 0;
 
-        if (minutes < 0)
-            minutes = 0;
+        var ts = TimeSpan.FromSeconds(allcount);
+        var time = string.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
 
-        if (seconds < 0)
-            seconds = 0;
-
-        txtTimer.text = $"{hours:00}:{minutes:00}:{seconds:00}";
+        txtTimer.text = time;
     }
 }
