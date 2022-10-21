@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/VFX/HopeFun/scenes/0_Controller.unity
+    path: Assets/HopeFun/scenes/0_Controller.unity
     guid: 9c02ace2d2c474177ac420536880c53f
   - enabled: 1
-    path: Assets/VFX/HopeFun/scenes/1_HopeFun_0.unity
+    path: Assets/HopeFun/scenes/1_HopeFun_0.unity
     guid: 06e0438d2873346f5a7b9c04f54eb9f6
   - enabled: 1
-    path: Assets/VFX/HopeFun/scenes/2_HopeFun_1.unity
+    path: Assets/HopeFun/scenes/2_HopeFun_1.unity
     guid: 8db0084f4dd7042049d7bbcaa3360517
   m_configObjects: {}
