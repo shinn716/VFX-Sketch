@@ -26,8 +26,7 @@ public class FlickeringNeonLight : MonoBehaviour
     // Start is called before the first frame update //
     void Start()
     {
-
-        print(render.material.GetFloat("_EmissiveIntensity"));
+        //print(render.material.GetFloat("_EmissiveIntensity"));
 
         //neonLight = GetComponent<Light>();
         fullIntensity = render.material.GetFloat("_EmissiveIntensity");

@@ -41,10 +41,11 @@ public class OSCReceiver : MonoBehaviour
                 if (msg.Equals("close"))
                     Application.Quit();
                 break;
-            case "/countdiwn":
+            case "/countdown":
                 msg = _message.values[0].ToString();
                 int.TryParse(msg, out int _tmp);
                 SceneController.Minutes = _tmp;
+                sceneController.SetCountDown(); 
                 break;
         }
     }

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b23de600908be4c83dca2c48edef63, type: 3}
   m_Name: Utility
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   saturation:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 1.51
     min: 0
     max: 2
   hueShift:
