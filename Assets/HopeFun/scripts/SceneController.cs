@@ -64,7 +64,8 @@ public class SceneController : MonoBehaviour
                     return;
                 canvasGroup.alpha = 1;
                 maincam.enabled = true;
-                DisposeScene(currentScene);
+                UnloadAllScenesExcept("0_Controller");
+                //DisposeScene(currentScene);
                 currentScene = 0;
                 break;
             case 1:
@@ -114,11 +115,20 @@ public class SceneController : MonoBehaviour
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_name, LoadSceneMode.Additive);
         while (!asyncLoad.isDone)
         {
-            if (asyncLoad.progress >= 0.9f)
-            {
-                loadFlag = false;
-            }
             yield return null;
+        }
+        loadFlag = false;
+    }
+    void UnloadAllScenesExcept(string sceneName)
+    {
+        int c = SceneManager.sceneCount;
+        for (int i = 0; i < c; i++)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+            if (scene.name != sceneName)
+            {
+                SceneManager.UnloadSceneAsync(scene);
+            }
         }
     }
 }
