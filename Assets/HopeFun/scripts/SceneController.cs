@@ -25,6 +25,7 @@ public class SceneController : MonoBehaviour
 {
     public static int Minutes = 10;
 
+    [SerializeField] Image imgConnection;
     [SerializeField] Text txtRemoteIp;
     [SerializeField] Camera maincam;
     [SerializeField] CanvasGroup canvasGroup;
@@ -38,12 +39,15 @@ public class SceneController : MonoBehaviour
     {
         var str = Utils.GetLocalIP();
         sb.AppendLine("Local IP:");
+
+        OSCReceiver.Instance.isConnection += Connection;
+        OSCReceiver.Instance.selectScene += LoadScene;
+        OSCReceiver.Instance.setMinute += SetCountDown;
+
         foreach (var i in str)
             sb.AppendLine(i);
         txtRemoteIp.text = sb.ToString();
     }
-
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.W) && !loadFlag)
@@ -53,9 +57,29 @@ public class SceneController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Q))
             LoadScene(0);
     }
+    private void OnDestroy()
+    {
+        OSCReceiver.Instance.isConnection -= Connection;
+        OSCReceiver.Instance.selectScene -= LoadScene;
+        OSCReceiver.Instance.setMinute -= SetCountDown;
+    }
 
 
-    public void LoadScene(int _index)
+    public void SetMinutes(string _input)
+    {
+        int.TryParse(_input, out int value);
+        Minutes = value;
+    }
+
+
+    private void SetCountDown(int _minutes)
+    {
+        Minutes = _minutes;
+        if (countdown == null)
+            countdown = FindObjectOfType<Countdown>();
+        countdown?.SetValue(Minutes);
+    }
+    private void LoadScene(int _index)
     {
         switch (_index)
         {
@@ -90,19 +114,6 @@ public class SceneController : MonoBehaviour
                 break;
         }
     }
-    public void SetMinutes(string _input)
-    {
-        int.TryParse(_input, out int value);
-        Minutes = value;
-    }
-    public void SetCountDown()
-    {
-        if (countdown == null)
-            countdown = FindObjectOfType<Countdown>();
-        countdown?.SetValue(Minutes);
-    }
-
-
     private void DisposeScene(int _scene)
     {
         if (_scene == 1)
@@ -110,16 +121,7 @@ public class SceneController : MonoBehaviour
         else if (_scene == 2)
             SceneManager.UnloadSceneAsync("2_HopeFun_1");
     }
-    private IEnumerator LoadAsyncScene(string _name)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_name, LoadSceneMode.Additive);
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        loadFlag = false;
-    }
-    void UnloadAllScenesExcept(string sceneName)
+    private void UnloadAllScenesExcept(string sceneName)
     {
         int c = SceneManager.sceneCount;
         for (int i = 0; i < c; i++)
@@ -130,5 +132,24 @@ public class SceneController : MonoBehaviour
                 SceneManager.UnloadSceneAsync(scene);
             }
         }
+    }
+    private void Connection()
+    {
+        StartCoroutine(ConnectionCo());
+    }
+    private IEnumerator ConnectionCo()
+    {
+        imgConnection.color = Color.green;
+        yield return new WaitForSeconds(3);
+        imgConnection.color = Color.clear;
+    }
+    private IEnumerator LoadAsyncScene(string _name)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_name, LoadSceneMode.Additive);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        loadFlag = false;
     }
 }
