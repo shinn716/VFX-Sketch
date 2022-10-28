@@ -267,7 +267,7 @@ VisualEffect:
       - m_Value: {x: 3, y: 30}
         m_Name: XScaleRange
         m_Overridden: 1
-      - m_Value: {x: 0.25, y: 0.25}
+      - m_Value: {x: 0.25, y: 0.5}
         m_Name: YScaleRange
         m_Overridden: 1
     m_Vector3f:
@@ -400,7 +400,7 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
-  clearColorMode: 0
+  clearColorMode: 1
   backgroundColorHDR: {r: 0, g: 0, b: 0, a: 0}
   clearDepth: 1
   volumeLayerMask:
