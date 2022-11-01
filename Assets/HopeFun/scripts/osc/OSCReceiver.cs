@@ -12,6 +12,7 @@ public class OSCReceiver : MonoBehaviour
     public event Action<int> selectScene;
     public event Action<int> setMinute;
     public event Action isConnection;
+    public event Action isQuit;
 
     private string msg = string.Empty;
 
@@ -41,7 +42,7 @@ public class OSCReceiver : MonoBehaviour
             case "/app":
                 msg = _message.values[0].ToString();
                 if (msg.Equals("close"))
-                    Application.Quit();
+                    isQuit?.Invoke();
                 break;
             case "/countdown":
                 msg = _message.values[0].ToString();

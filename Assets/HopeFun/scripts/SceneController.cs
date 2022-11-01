@@ -43,6 +43,7 @@ public class SceneController : MonoBehaviour
         OSCReceiver.Instance.isConnection += Connection;
         OSCReceiver.Instance.selectScene += LoadScene;
         OSCReceiver.Instance.setMinute += SetCountDown;
+        OSCReceiver.Instance.isQuit += Quit;
 
         foreach (var i in str)
             sb.AppendLine(i);
@@ -62,6 +63,7 @@ public class SceneController : MonoBehaviour
         OSCReceiver.Instance.isConnection -= Connection;
         OSCReceiver.Instance.selectScene -= LoadScene;
         OSCReceiver.Instance.setMinute -= SetCountDown;
+        OSCReceiver.Instance.isQuit -= Quit;
     }
 
 
@@ -72,6 +74,10 @@ public class SceneController : MonoBehaviour
     }
 
 
+    private void Quit()
+    {
+        Application.Quit();
+    }
     private void SetCountDown(int _minutes)
     {
         Minutes = _minutes;
