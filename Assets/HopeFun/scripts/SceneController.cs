@@ -78,6 +78,12 @@ public class SceneController : MonoBehaviour
     {
         Application.Quit();
     }
+    private void SetCountDown()
+    {
+        if (countdown == null)
+            countdown = FindObjectOfType<Countdown>();
+        countdown?.SetValue(Minutes);
+    }
     private void SetCountDown(int _minutes)
     {
         Minutes = _minutes;
