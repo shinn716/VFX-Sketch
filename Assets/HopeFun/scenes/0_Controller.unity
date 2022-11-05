@@ -1379,7 +1379,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!222 &2095007037637645953
 CanvasRenderer:
   m_ObjectHideFlags: 0
