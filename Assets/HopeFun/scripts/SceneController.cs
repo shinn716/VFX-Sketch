@@ -23,17 +23,27 @@ public class Utils
 
 public class SceneController : MonoBehaviour
 {
-    public static int Minutes = 10;
+    public static SceneController Instance;
 
+    public static int Minutes = 10;
+    public static bool Mute = false;
+
+    [SerializeField] Toggle togMute;
     [SerializeField] Image imgConnection;
     [SerializeField] Text txtRemoteIp;
     [SerializeField] Camera maincam;
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] Countdown countdown = null;
+    [SerializeField] AudioListener audioListener = null;
 
     private int currentScene = 0;
     private bool loadFlag = false;
     private StringBuilder sb = new StringBuilder();
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -43,6 +53,7 @@ public class SceneController : MonoBehaviour
         OSCReceiver.Instance.isConnection += Connection;
         OSCReceiver.Instance.selectScene += LoadScene;
         OSCReceiver.Instance.setMinute += SetCountDown;
+        OSCReceiver.Instance.setMute += SetMute;
         OSCReceiver.Instance.isQuit += Quit;
 
         foreach (var i in str)
@@ -63,6 +74,7 @@ public class SceneController : MonoBehaviour
         OSCReceiver.Instance.isConnection -= Connection;
         OSCReceiver.Instance.selectScene -= LoadScene;
         OSCReceiver.Instance.setMinute -= SetCountDown;
+        OSCReceiver.Instance.setMute -= SetMute;
         OSCReceiver.Instance.isQuit -= Quit;
     }
 
@@ -71,6 +83,30 @@ public class SceneController : MonoBehaviour
     {
         int.TryParse(_input, out int value);
         Minutes = value;
+    }
+
+
+
+    public void SetMute(bool _mute)
+    {
+        Mute = _mute;
+        StartCoroutine(SetMuteCo(Mute));
+    }
+    private void SetMuteMsg()
+    {
+        StartCoroutine(SetMuteCo(Mute));
+    }
+
+    private IEnumerator SetMuteCo(bool _mute)
+    {
+        if (audioListener == null)
+            audioListener = FindObjectOfType<AudioListener>();
+        yield return null;
+
+        if (audioListener == null)
+            yield break;
+        audioListener.enabled = !_mute;
+        togMute.isOn = _mute;
     }
 
 

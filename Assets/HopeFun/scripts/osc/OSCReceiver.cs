@@ -9,6 +9,7 @@ public class OSCReceiver : MonoBehaviour
 
     [SerializeField] private OSC oscReference;
 
+    public event Action<bool> setMute;
     public event Action<int> selectScene;
     public event Action<int> setMinute;
     public event Action isConnection;
@@ -52,6 +53,12 @@ public class OSCReceiver : MonoBehaviour
             case "/test":
                 isConnection?.Invoke();
                 break;
+            case "/mute":
+                msg = _message.values[0].ToString();
+                bool.TryParse(msg, out bool _mute);
+                setMute?.Invoke(_mute);
+                break;
+                
         }
     }
 }
