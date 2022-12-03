@@ -1058,7 +1058,6 @@ MonoBehaviour:
   m_Script: {fileID: 1735837966}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Entries: []
 --- !u!4 &1003050401
 Transform:
   m_ObjectHideFlags: 19
@@ -1235,6 +1234,8 @@ PlayableDirector:
     value: {fileID: 919132148802390446}
   - key: {fileID: -1943695448117826899, guid: 1129c64d2491845b596581eb7d0849a8, type: 2}
     value: {fileID: 1847088733}
+  - key: {fileID: -1900526129481768840, guid: 1129c64d2491845b596581eb7d0849a8, type: 2}
+    value: {fileID: 1719180513}
   m_ExposedReferences:
     m_References:
     - 6a08eb35c5b004f6fa6c504cb2ac34c9: {fileID: 0}
@@ -7267,7 +7268,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853592983}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 7c3c81beffd244ec8be61c65a2166be8, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 0e473d6ad75f4e542aed54bf06ad3f1e, type: 3}
   m_TargetCameraAlpha: 0
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
