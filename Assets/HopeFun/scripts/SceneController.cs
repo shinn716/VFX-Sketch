@@ -90,24 +90,39 @@ public class SceneController : MonoBehaviour
     public void SetMute(bool _mute)
     {
         Mute = _mute;
-        StartCoroutine(SetMuteCo(Mute));
+        if (hopeFun.Instance != null)
+        {
+            if (Mute)
+                hopeFun.Instance.audioSources.volume = 0;
+            else
+                hopeFun.Instance.audioSources.volume = 1;
+        }
+        //StartCoroutine(SetMuteCo(Mute));
     }
     private void SetMuteMsg()
     {
-        StartCoroutine(SetMuteCo(Mute));
+        if (hopeFun.Instance != null)
+        {
+            if (Mute)
+                hopeFun.Instance.audioSources.volume = 0;
+            else
+                hopeFun.Instance.audioSources.volume = 1;
+        }
+        //StartCoroutine(SetMuteCo(Mute));
     }
 
-    private IEnumerator SetMuteCo(bool _mute)
-    {
-        if (audioListener == null)
-            audioListener = FindObjectOfType<AudioListener>();
-        yield return null;
+    //private IEnumerator SetMuteCo(bool _mute)
+    //{
+    //    if (audioListener == null)
+    //        audioListener = FindObjectOfType<AudioListener>();
+    //    yield return null;
 
-        if (audioListener == null)
-            yield break;
-        audioListener.enabled = !_mute;
-        togMute.isOn = _mute;
-    }
+    //    if (audioListener != null)
+    //    {
+    //        audioListener.enabled = !_mute;
+    //        togMute.isOn = _mute;
+    //    }
+    //}
 
 
     private void Quit()

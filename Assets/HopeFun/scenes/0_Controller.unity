@@ -652,6 +652,7 @@ GameObject:
   - component: {fileID: 1089672797}
   - component: {fileID: 1089672799}
   - component: {fileID: 1089672798}
+  - component: {fileID: 1089672800}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -720,6 +721,20 @@ MonoBehaviour:
   inPort: 7001
   outIP: 127.0.0.1
   outPort: 1234
+--- !u!114 &1089672800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089672795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31144da06454941f180194f2c7bf0db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableToggle: 96
+  ShowConsoleInDefault: 0
 --- !u!1001 &1142880157
 PrefabInstance:
   m_ObjectHideFlags: 0
